@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import NaturalEvents from './components/NaturalEvents';
 
 
 const App = () => {
@@ -50,7 +51,7 @@ const App = () => {
       <Form userInput={userInput} handleChange={handleChange} handleSubmit={handleSubmit} clearInput={clearInput}/>
       <p>User input is: {userInput}</p>
       <List tasks={tasks} deleteTask={deleteTask}/>
-      <Events events = {events} count = {count}/>
+      <NaturalEvents events = {events}/>
     </div>
   )
 }
@@ -80,14 +81,6 @@ const List = (props) => {
   )
 }
 
-//can destructure the props in the argument such that don't need to use props.events etc..
-const Events = ({events, count}) => {
-  return (
-    <div>
-      <h1>Yeet!</h1>
-    </div>
-  )
-}
 
 export default App;
 
