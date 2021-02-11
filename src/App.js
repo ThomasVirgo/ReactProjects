@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 
@@ -7,6 +7,18 @@ const App = () => {
   const [count, setCounter] = useState(5);
   const [tasks, setTasks] = useState([]);
   const [userInput, setUserInput] = useState('');
+  const [events, setEvents] = useState([]);
+
+  useEffect(()=>{
+    const fetchEventData = async () => {
+      const myResponse = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?limit=10&days=10'); //have to use await because fetch returns a promise
+      const data = await myResponse.json();
+      setEvents(data.events);
+      console.log(data.events);
+    }
+    fetchEventData()
+  }, []) //providing an empty array as the dependency means it only executes once when the page loads. If you provide nothing, it will execute on every re-render!
+
 
   const handleChange = (event) => {
     setUserInput(event.target.value)
@@ -22,6 +34,13 @@ const App = () => {
     setUserInput('');
   }
 
+  const deleteTask = (task) => {
+    const deleteIndex = tasks.indexOf(task);
+    let currentTasks = [...tasks];
+    currentTasks.splice(deleteIndex,1);
+    setTasks(currentTasks);
+  }
+
 
   return (
     <div>
@@ -30,7 +49,8 @@ const App = () => {
       <p>Current count is: {count}</p>
       <Form userInput={userInput} handleChange={handleChange} handleSubmit={handleSubmit} clearInput={clearInput}/>
       <p>User input is: {userInput}</p>
-      <List tasks={tasks}/>
+      <List tasks={tasks} deleteTask={deleteTask}/>
+      <Events events = {events} count = {count}/>
     </div>
   )
 }
@@ -47,10 +67,24 @@ const Form = (props) => {
 }
 
 const List = (props) => {
-  const taskElements = props.tasks.map((item, index) => <h2 key = {index}>{item}</h2>)
+  const taskElements = props.tasks.map((item, index) => 
+    <div key = {item}>
+      <h2>{item}</h2>
+      <button onClick = {() => props.deleteTask(item)}>Delete Task</button>
+    </div>
+  )
   return (
     <div>
       {taskElements}
+    </div>
+  )
+}
+
+//can destructure the props in the argument such that don't need to use props.events etc..
+const Events = ({events, count}) => {
+  return (
+    <div>
+      <h1>Yeet!</h1>
     </div>
   )
 }
