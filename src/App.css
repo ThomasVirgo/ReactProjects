@@ -1,0 +1,67 @@
+.nav-buttons {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.button {
+    background-color: #1b831f; 
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+.button:hover{
+    text-decoration: underline;
+}
+
+.button-blue {
+    background-color: blue;
+}
+
+.button-red {
+    background-color: crimson;
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-input {
+    width: 30vw;
+    height: 50px;
+    font-size: 20px;
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50vw;
+    height: 100vh;
+}
+
+.task {
+    display: flex;
+}
+
+.delete-task{
+    color: red;
+    background-color: transparent;
+    border: none;
+    padding-bottom: 0;
+    margin-left: 20px; 
+}
+
+.delete-task:hover {
+    font-weight: bold;
+}

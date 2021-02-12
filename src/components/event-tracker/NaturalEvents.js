@@ -9,11 +9,12 @@ const NaturalEvents = ({events, isDropdown}) => {
       'title':item.title,
       'type':item.categories[0].title,
       'location':item.geometries,
+      'date':item.geometries[0].date.slice(0,10),
     }
     return myObj
   })
   
-  const mappedEvents = myEvents.map(item => <p key = {item.title}>{item.title}</p>)
+  const mappedEvents = myEvents.map(item => <p key = {item.title}>{`${item.title} on ${item.date}`}</p>)
   const reduceFun = (list,item) => {
     if (list.indexOf(item.type)==-1){
       list.push(item.type);
@@ -28,7 +29,7 @@ const NaturalEvents = ({events, isDropdown}) => {
 
   const handleFilterClick = (eventType) => {
     const filteredEvents = filterEvents(myEvents, eventType);
-    const showTheseEvents = filteredEvents.map(item => <p key = {item.title}>{item.title}</p>);
+    const showTheseEvents = filteredEvents.map(item => <p key = {item.title}>{`${item.title} on ${item.date}`}</p>);
     setShowEvents(showTheseEvents);
   }
 

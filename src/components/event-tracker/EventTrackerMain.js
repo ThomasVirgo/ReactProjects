@@ -13,7 +13,7 @@ const NaturalEventTracker = (props) => {
         }
         fetchEventData()
     }, []) //providing an empty array as the dependency means it only executes once when the page loads. If you provide nothing, it will execute on every re-render!
-
+    console.log(events);
     const toggleDropdown = () => {
         setDropdown(!dropdown);
     }

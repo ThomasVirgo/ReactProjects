@@ -29,7 +29,7 @@ const ToDo = (props) => {
     }
 
     return (
-        <div id = 'to-do-list'>
+        <div id = 'to-do-list' className = 'todo-container'>
             <Form userInput={userInput} handleChange={handleChange} handleSubmit={handleSubmit} clearInput={clearInput}/>
             <List tasks={tasks} deleteTask={deleteTask}/>
         </div>
