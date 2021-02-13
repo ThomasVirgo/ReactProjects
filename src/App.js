@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import NaturalEventTracker from './components/event-tracker/EventTrackerMain';
 import ToDo from './components/to-do/ToDoMain';
+import FootballMain from './components/football-tracker/footballMain';
 
 
 const App = () => {
@@ -14,30 +15,22 @@ const App = () => {
 
   const button1 = <button className = 'button button-blue' onClick = {() => switchPage('toDo')}>To Do App</button>
   const button2 = <button className = 'button button-blue' onClick = {() => switchPage('natural')}>Natural Events Tracker</button>
+  const button3 = <button className = 'button button-blue' onClick = {() => switchPage('football')}>Football Tracker</button>
 
-  if (page==='' || page==='toDo'){
-    return (
-      <div id = 'main1'>
-        <div className = 'nav-buttons'>
-          {button1}
-          {button2}
-        </div>
-        <hr></hr>
-        <ToDo />
-      </div>
-    )
-  } else {
-    return (
-      <div id = 'main2'>
-      <div className = 'nav-buttons'>
-          {button1}
-          {button2}
+  return (
+    <div id='main'>
+      <div className='nav-buttons'>
+        {button1}
+        {button2}
+        {button3}
       </div>
       <hr></hr>
-      <NaturalEventTracker />
+      {/* use syntax of the form {condition && show this if conditional is true} */}
+      {page=='toDo' && <ToDo />}
+      {page=='natural' && <NaturalEventTracker />}
+      {page=='football' && <FootballMain />}
     </div>
-    )
-  }
+  )
 }
 
 export default App;
